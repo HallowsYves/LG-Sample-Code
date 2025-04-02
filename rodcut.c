@@ -8,6 +8,11 @@
   Cut sizes: [1, 2]
   Values:    [2, 5]
   Example output shows the sequence of cuts and their total value.
+
+  Cut a piece of size 2 worth 5 dollars
+  Cut a piece of size 2 worth 5 dollars
+  Cut a piece of size 1 worth 2 dollars
+  Total Value: 12
 */
 #include <stdio.h>
 #include <stdlib.h>
