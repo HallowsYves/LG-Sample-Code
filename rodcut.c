@@ -18,33 +18,26 @@
 #include <stdlib.h>
 
 void solve_rod_cutting() {
-  // Hard coded Examples
   int rodLength = 5;
   int lengths[] = {1, 2};
   int values[] = {2, 5};
   int numCutOptions = 2;
 
-  // Allocate Arrays
   int *bestValueForLength = malloc((rodLength + 1) * sizeof(int));
   int *chosenPiece = malloc((rodLength + 1) * sizeof(int));
 
-  // Base Case
   for (int i = 0; i <= rodLength; i++) {
     bestValueForLength[i] = 0;
     chosenPiece[i] = -1;
   }
 
-  // DP Logic
   for (int pieceIndex = 0; pieceIndex < numCutOptions; pieceIndex++) {
     int cutSize = lengths[pieceIndex];
     int cutValue = values[pieceIndex];
 
-    for (int currentLength = cutSize; currentLength <= rodLength;
-         currentLength++) {
-
-      int candidateValue =
-          bestValueForLength[currentLength - cutSize] + cutValue;
-
+    for (int currentLength = cutSize; currentLength <= rodLength; currentLength++) {
+      int candidateValue = bestValueForLength[currentLength - cutSize] + cutValue;
+      
       if (candidateValue > bestValueForLength[currentLength]) {
         bestValueForLength[currentLength] = candidateValue;
         chosenPiece[currentLength] = pieceIndex;
