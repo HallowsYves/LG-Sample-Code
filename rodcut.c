@@ -2,7 +2,7 @@
   Rod Cutting Problem (Simplified Sample)
 
   Given a rod of length 5 and a list of available cut sizes with associated
-  values, this program calculates the maximum obtainable value using dynamic
+  values, calculate the maximum obtainable value using dynamic
   programming.
 
   Cut sizes: [1, 2]
@@ -35,7 +35,7 @@ void solve_rod_cutting() {
   for (int pieceIndex = 0; pieceIndex < numCutOptions; pieceIndex++) {
     int cutSize = lengths[pieceIndex];
     int cutValue = values[pieceIndex];
-
+    
     for (int currentLength = cutSize; currentLength <= rodLength; currentLength++) {
       int candidateValue = bestValueForLength[currentLength - cutSize] + cutValue;
       
@@ -44,6 +44,11 @@ void solve_rod_cutting() {
         chosenPiece[currentLength] = pieceIndex;
       }
     }
+    // After processing cutSize = 1:
+    // cutSize=1, cutValue = 2, [0,2,4,6,8,10], [-1,0,0,0,0,0]
+
+    // After processing cutSize = 2:
+    // cutSize=2, cutValue = 2, [0,2,5,7,9,12], [-1,0,1,1,1,1]
   }
 
   // Reconstruct and print solution
