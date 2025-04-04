@@ -26,6 +26,7 @@ void solve_rod_cutting() {
   int *bestValueForLength = malloc((rodLength + 1) * sizeof(int));
   int *chosenPiece = malloc((rodLength + 1) * sizeof(int));
 
+  // Base Case
   for (int i = 0; i <= rodLength; i++) {
     bestValueForLength[i] = 0;
     chosenPiece[i] = -1;
@@ -46,17 +47,17 @@ void solve_rod_cutting() {
   }
 
   // Reconstruct and print solution
-  int current = rodLength;
-  while (current > 0 && chosenPiece[current] != -1) {
-    int pieceIndex = chosenPiece[current];
+  int lengthToCut = rodLength;
+  while (lengthToCut > 0 && chosenPiece[lengthToCut] != -1) {
+    int pieceIndex = chosenPiece[lengthToCut];
     int cutSize = lengths[pieceIndex];
     int cutValue = values[pieceIndex];
     printf("Cut 1 piece of length %d worth %d\n", cutSize, cutValue);
-    current -= cutSize;
+    lengthToCut -= cutSize;
   }
 
-  if (current > 0) {
-    printf("Remainder: %d\n", current);
+  if (lengthToCut > 0) {
+    printf("Remainder: %d\n", lengthToCut);
   }
   printf("Value: %d\n", bestValueForLength[rodLength]);
 
